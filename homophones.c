@@ -9,8 +9,12 @@
 
 #include "fmvm.h"
 
-char g_strKey[135000][50];
-char g_strPhonemes[135000][128];
+#define _DICT_COUNT 135000
+#define _KEY_LENGTH 50
+#define _PHONEMES_LENGTH 128
+
+char g_strKey[_DICT_COUNT][_KEY_LENGTH];
+char g_strPhonemes[_DICT_COUNT][_PHONEMES_LENGTH];
 
 char* SplitKey(char *strLine, char *strKey)
 {
@@ -105,7 +109,7 @@ int main(int argc, char *argv[])
 	while (fgets(line, sizeof(line), fp) != NULL)
 	{
 		line[strlen(line) - 1] = 0;
-		if(line[strlen(line) - 1] == 13)
+		if (line[strlen(line) - 1] == 13)
 			line[strlen(line) - 1] = 0;
 
 		SplitKey(line, strBuf);
@@ -133,7 +137,7 @@ int main(int argc, char *argv[])
 
 			av = mvm_multisearch(m2, strPhonemes, &mi);
 			for (j = 1; j <= mi; j++)
-				printf("%s ", av[j-1]);
+				printf("%s ", av[j - 1]);
 
 			printf("\n");
 		}

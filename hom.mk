@@ -3,12 +3,12 @@ DFLAGS = -g3 -Wall -Wextra -Werror -Wfloat-equal -pedantic -ansi
 SFLAGS = -g3 -fsanitize=undefined -fsanitize=address
 TESTBASE = homophones
 INCS = fmvm.h
-SOURCES =  $(TESTBASE).c mvm.c
+SOURCES =  $(TESTBASE).c fmvm.c
 EXECS = $(TESTBASE) $(TESTBASE)_d $(TESTBASE)_s homophone
 CC = clang
 
 run: $(TESTBASE)
-	./$(TESTBASE) BOY
+	./$(TESTBASE) -n 4 CHRISTMAS PROGRAM PASSING
 
 all: $(EXECS)
 

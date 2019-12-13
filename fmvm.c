@@ -6,6 +6,8 @@
 
 #include "fmvm.h"
 
+#define _PRINT_MVM_CONTENT_MAX_LENGTH 10000
+
 mvm* mvm_init(void)
 {
 	mvm *p = (mvm*)malloc(sizeof(mvm));
@@ -64,8 +66,8 @@ char* mvm_print(mvm* m)
 	if (m == NULL)
 		return NULL;
 
-	strResult = (char*)malloc(10000 * sizeof(char));
-	strTmp = (char*)malloc(100 * sizeof(char));
+	strResult = (char*)malloc(_PRINT_MVM_CONTENT_MAX_LENGTH * sizeof(char));
+	strTmp = (char*)malloc(_PRINT_MVM_CONTENT_MAX_LENGTH * sizeof(char));
 	sprintf(strResult, "");
 
 	p = m->head;
@@ -160,12 +162,14 @@ char** mvm_multisearch(mvm* m, char* key, int* n)
 	{
 		if (strcmp(p->key, key) == 0)
 			iCount++;
-		if (strcmp(q->key, key) == 0)
-			iCount++;
 
-		p = p->next;
 		if (p == q)
 			break;
+		else
+			p = p->next;
+
+		if (strcmp(q->key, key) == 0)
+			iCount++;
 		q = q->prev;
 	}
 
@@ -183,15 +187,17 @@ char** mvm_multisearch(mvm* m, char* key, int* n)
 			c[iIndex] = p->data;
 			iIndex++;
 		}
+		
+		if (p == q)
+			break;
+		else
+			p = p->next;
+
 		if (strcmp(q->key, key) == 0)
 		{
 			c[iIndex] = q->data;
 			iIndex++;
 		}
-
-		p = p->next;
-		if (p == q)
-			break;
 		q = q->prev;
 	}
 

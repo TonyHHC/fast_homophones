@@ -31,7 +31,7 @@ int main(void)
 
 	/* Test building & printing */
 	str = mvm_print(m);
-	i = strcmp(str, "[bird](tweet) [horse](neigh) [cat](meow) [frog](croak) [dog](bark) ");
+	i = strcmp(str, "[frog](croak) [horse](neigh) [bird](tweet) [dog](bark) [cat](meow) ");
 	assert(i == 0);
 	free(str);
 
@@ -43,13 +43,13 @@ int main(void)
 	mvm_delete(m, "dog");
 	assert(mvm_size(m) == 4);
 	str = mvm_print(m);
-	i = strcmp(str, "[bird](tweet) [horse](neigh) [cat](meow) [frog](croak) ");
+	i = strcmp(str, "[frog](croak) [horse](neigh) [bird](tweet) [cat](meow) ");
 	assert(i == 0);
 	free(str);
 	mvm_delete(m, "frog");
 	assert(mvm_size(m) == 3);
 	str = mvm_print(m);
-	i = strcmp(str, "[bird](tweet) [horse](neigh) [cat](meow) ");
+	i = strcmp(str, "[horse](neigh) [bird](tweet) [cat](meow) ");
 	assert(i == 0);
 	free(str);
 
@@ -58,7 +58,7 @@ int main(void)
 	mvm_insert(m, "frog", "ribbit");
 	assert(mvm_size(m) == 5);
 	str = mvm_print(m);
-	i = strcmp(str, "[bird](tweet) [horse](neigh) [cat](meow) [frog](ribbit) [frog](croak) ");
+	i = strcmp(str, "[frog](ribbit) [frog](croak) [horse](neigh) [bird](tweet) [cat](meow) ");
 	free(str);
 	assert(i == 0);
 
@@ -91,7 +91,7 @@ int main(void)
 	mvm_delete(m, "frog");
 	assert(mvm_size(m) == 3);
 	str = mvm_print(m);
-	i = strcmp(str, "[bird](tweet) [horse](neigh) [cat](meow) ");
+	i = strcmp(str, "[horse](neigh) [bird](tweet) [cat](meow) ");
 	assert(i == 0);
 	free(str);
 
