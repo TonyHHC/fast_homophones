@@ -2,7 +2,7 @@ CFLAGS = -O2 -Wall -Wextra -Werror -Wfloat-equal -pedantic -ansi
 DFLAGS = -g3 -Wall -Wextra -Werror -Wfloat-equal -pedantic -ansi
 SFLAGS = -g3 -fsanitize=undefined -fsanitize=address
 TESTBASE = homophones
-INCS = mvm.h
+INCS = fmvm.h
 SOURCES =  $(TESTBASE).c mvm.c
 EXECS = $(TESTBASE) $(TESTBASE)_d $(TESTBASE)_s homophone
 CC = clang
